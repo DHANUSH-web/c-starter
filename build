@@ -12,9 +12,21 @@ if [[ "$1" == "run" ]]; then
     fi
 # build the executable
 elif [[ "$1" == "build" ]]; then
-    if [[ -z "$2" || "$2" == "--debug" ]]; then
+    if [[ -z "$2" ]]; then
+        echo "Building both debug and release versions..."
+
+        # Build for debug
+        echo -e "\e[32mBuilding debug version...\e[0m"
+        cmake --preset debug && cmake --build ./out/debug
+        
+        # Build for release
+        echo -e "\e[32mBuilding release version...\e[0m"
+        cmake --preset release && cmake --build ./out/release
+    elif [[ "$2" == "--debug" ]]; then
+        echo "Building debug version..."
         cmake --preset debug && cmake --build ./out/debug
     elif [[ "$2" == "--release" ]]; then
+        echo "Building release version..."
         cmake --preset release && cmake --build ./out/release
     else
         echo "Invalid option. Use --debug or --release."
