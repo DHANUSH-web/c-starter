@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# build and run the executable
+if [[ "$1" == "run" ]]; then
+    if [[ -z "$2" || "$2" == "--debug" ]]; then
+        cmake --preset debug && cmake --build ./out/debug && ./out/debug/main
+    elif [[ "$2" == "--release" ]]; then
+        cmake --preset release && cmake --build ./out/release && ./out/release/main
+    else
+        echo "Invalid option. Use --debug or --release."
+        exit 1
+    fi
+# build the executable
+elif [[ "$1" == "build" ]]; then
+    if [[ -z "$2" || "$2" == "--debug" ]]; then
+        cmake --preset debug && cmake --build ./out/debug
+    elif [[ "$2" == "--release" ]]; then
+        cmake --preset release && cmake --build ./out/release
+    else
+        echo "Invalid option. Use --debug or --release."
+        exit 1
+    fi
+# clean the build directory
+elif [[ "$1" == "clean" ]]; then
+    if [[ "$2" == "--debug" ]]; then
+        rm -rf ./out/debug
+        echo "Cleaned debug build directory."
+    elif [[ "$2" == "--release" ]]; then
+        rm -rf ./out/release
+        echo "Cleaned release build directory."
+    else
+        rm -rf ./out
+        echo "Cleaned all build directories."
+    fi
+elif [[ "$1" == "help" ]]; then
+    echo "Usage: ./build.sh [run|clean|help] [--debug|--release]"
+else
+    echo "Usage: ./build.sh run [--debug|--release]"
+    exit 1
+fi
