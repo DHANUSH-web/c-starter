@@ -12,7 +12,13 @@ if [[ "$1" == "run" ]]; then
     fi
 # build the executable
 elif [[ "$1" == "build" ]]; then
-    if [[ -z "$2" ]]; then
+    if [[ -z "$2" || "$2" == "--debug" ]]; then
+        echo "Building debug version..."
+        cmake --preset debug && cmake --build ./out/debug
+    elif [[ "$2" == "--release" ]]; then
+        echo "Building release version..."
+        cmake --preset release && cmake --build ./out/release
+    elif [[ "$2" == "--all" ]]; then
         echo "Building both debug and release versions..."
 
         # Build for debug
@@ -22,14 +28,8 @@ elif [[ "$1" == "build" ]]; then
         # Build for release
         echo -e "\e[32mBuilding release version...\e[0m"
         cmake --preset release && cmake --build ./out/release
-    elif [[ "$2" == "--debug" ]]; then
-        echo "Building debug version..."
-        cmake --preset debug && cmake --build ./out/debug
-    elif [[ "$2" == "--release" ]]; then
-        echo "Building release version..."
-        cmake --preset release && cmake --build ./out/release
     else
-        echo "Invalid option. Use --debug or --release."
+        echo "Invalid option. Use --debug or --release or --all."
         exit 1
     fi
 # clean the build directory
@@ -45,8 +45,8 @@ elif [[ "$1" == "clean" ]]; then
         echo "Cleaned all build directories."
     fi
 elif [[ "$1" == "help" ]]; then
-    echo "Usage: ./build.sh [run|clean|help] [--debug|--release]"
+    echo "Usage: ./build [run|clean|help] [--debug|--release|--all]"
 else
-    echo "Usage: ./build.sh run [--debug|--release]"
+    echo "Usage: ./build run [--debug|--release]"
     exit 1
 fi
