@@ -3,9 +3,9 @@
 # build and run the executable
 if [[ "$1" == "run" ]]; then
     if [[ -z "$2" || "$2" == "--debug" ]]; then
-        cmake --preset debug && cmake --build ./out/debug && ./out/debug/main
+        cmake --preset unix-debug && cmake --build ./out/unix-debug && ./out/unix-debug/main
     elif [[ "$2" == "--release" ]]; then
-        cmake --preset release && cmake --build ./out/release && ./out/release/main
+        cmake --preset unix-release && cmake --build ./out/unix-release && ./out/unix-release/main
     else
         echo "Invalid option. Use --debug or --release."
         exit 1
@@ -14,20 +14,20 @@ if [[ "$1" == "run" ]]; then
 elif [[ "$1" == "build" ]]; then
     if [[ -z "$2" || "$2" == "--debug" ]]; then
         echo "Building debug version..."
-        cmake --preset debug && cmake --build ./out/debug
+        cmake --preset unix-debug && cmake --build ./out/unix-debug
     elif [[ "$2" == "--release" ]]; then
         echo "Building release version..."
-        cmake --preset release && cmake --build ./out/release
+        cmake --preset unix-release && cmake --build ./out/unix-release
     elif [[ "$2" == "--all" ]]; then
         echo "Building both debug and release versions..."
 
         # Build for debug
         echo -e "\e[32mBuilding debug version...\e[0m"
-        cmake --preset debug && cmake --build ./out/debug
-        
+        cmake --preset unix-debug && cmake --build ./out/unix-debug
+
         # Build for release
         echo -e "\e[32mBuilding release version...\e[0m"
-        cmake --preset release && cmake --build ./out/release
+        cmake --preset unix-release && cmake --build ./out/unix-release
     else
         echo "Invalid option. Use --debug or --release or --all."
         exit 1
@@ -35,10 +35,10 @@ elif [[ "$1" == "build" ]]; then
 # clean the build directory
 elif [[ "$1" == "clean" ]]; then
     if [[ "$2" == "--debug" ]]; then
-        rm -rf ./out/debug
+        rm -rf ./out/unix-debug
         echo "Cleaned debug build directory."
     elif [[ "$2" == "--release" ]]; then
-        rm -rf ./out/release
+        rm -rf ./out/unix-release
         echo "Cleaned release build directory."
     else
         rm -rf ./out
