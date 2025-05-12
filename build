@@ -24,7 +24,7 @@ elif [[ "$1" == "build" ]]; then
         # Build for debug
         echo -e "\e[32mBuilding debug version...\e[0m"
         cmake --preset unix-debug && cmake --build ./out/unix-debug
-
+        
         # Build for release
         echo -e "\e[32mBuilding release version...\e[0m"
         cmake --preset unix-release && cmake --build ./out/unix-release
