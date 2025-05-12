@@ -9,9 +9,9 @@ This repository contains starter code and resources for C programming. It is des
 - Instructions for compiling and running C programs
 
 ## Getting Started
-1. Clone the repository:
+1. Clone the repository and sync the submodules:
     ```bash
-    git clone https://github.com/DHANUSH-web/c-starter.git
+    git clone https://github.com/DHANUSH-web/c-starter.git --recurse-submodules
     ```
 2. Navigate to the project directory:
     ```bash
