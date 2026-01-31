@@ -45,8 +45,8 @@ elif [[ "$1" == "clean" ]]; then
         echo "Cleaned all build directories."
     fi
 elif [[ "$1" == "help" ]]; then
-    echo "Usage: ./build [run|clean|help] [--debug|--release|--all]"
+    glow README.md 2>/dev/null || cat README.md
 else
-    echo "Usage: ./build run [--debug|--release]"
+    echo "Usage: ./build [build | run | clean | help] [--debug | --release]"
     exit 1
 fi
