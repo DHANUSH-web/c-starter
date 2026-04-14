@@ -32,6 +32,18 @@ elif [[ "$1" == "build" ]]; then
         echo "Invalid option. Use --debug or --release or --all."
         exit 1
     fi
+# unittest
+elif [[ "$1" == "test" ]]; then
+    if [[ -z $2 || "$2" == "--debug" ]]; then
+        ./build build $2
+        ./out/unix-debug/test_main
+    elif [[ "$2" == "--release" ]]; then
+        ./build build $2
+        ./out/unix-release/test_main
+    else
+        echo "No test target found!!"
+        exit 1;
+    fi
 # clean the build directory
 elif [[ "$1" == "clean" ]]; then
     if [[ "$2" == "--debug" ]]; then
@@ -47,6 +59,6 @@ elif [[ "$1" == "clean" ]]; then
 elif [[ "$1" == "help" ]]; then
     glow README.md 2>/dev/null || cat README.md
 else
-    echo "Usage: ./build [build | run | clean | help] [--debug | --release]"
+    echo "Usage: ./build [build | run | test | clean | help] [--debug | --release]"
     exit 1
 fi

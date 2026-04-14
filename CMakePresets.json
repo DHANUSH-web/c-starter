@@ -41,5 +41,23 @@
                 "CMAKE_C_COMPILER": "gcc.exe"
             }
         }
+    ],
+    "buildPresets": [
+        {
+            "name": "unix-debug",
+            "configurePreset": "unix-debug"
+        },
+        {
+            "name": "win-debug",
+            "configurePreset": "win-debug"
+        },
+        {
+            "name": "unix-release",
+            "configurePreset": "unix-release"
+        },
+        {
+            "name": "win-release",
+            "configurePreset": "win-release"
+        }
     ]
 }
