@@ -3,7 +3,7 @@
     "configurePresets": [
         {
             "name": "unix-debug",
-            "generator": "Unix Makefiles",
+            "generator": "Ninja",
             "binaryDir": "${sourceDir}/out/${presetName}",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
@@ -13,7 +13,7 @@
         },
         {
             "name": "win-debug",
-            "generator": "MinGW Makefiles",
+            "generator": "Ninja",
             "binaryDir": "${sourceDir}/out/${presetName}",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
@@ -23,7 +23,7 @@
         },
         {
             "name": "unix-release",
-            "generator": "Unix Makefiles",
+            "generator": "Ninja",
             "binaryDir": "${sourceDir}/out/${presetName}",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
@@ -33,7 +33,7 @@
         },
         {
             "name": "win-release",
-            "generator": "MinGW Makefiles",
+            "generator": "Ninja",
             "binaryDir": "${sourceDir}/out/${presetName}",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
