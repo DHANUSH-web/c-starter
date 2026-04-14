@@ -3,7 +3,7 @@
     "configurePresets": [
         {
             "name": "unix-debug",
-            "generator": "Unix Makefiles",
+            "generator": "Ninja",
             "binaryDir": "${sourceDir}/out/${presetName}",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
@@ -13,7 +13,7 @@
         },
         {
             "name": "win-debug",
-            "generator": "MinGW Makefiles",
+            "generator": "Ninja",
             "binaryDir": "${sourceDir}/out/${presetName}",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
@@ -23,7 +23,7 @@
         },
         {
             "name": "unix-release",
-            "generator": "Unix Makefiles",
+            "generator": "Ninja",
             "binaryDir": "${sourceDir}/out/${presetName}",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
@@ -33,13 +33,31 @@
         },
         {
             "name": "win-release",
-            "generator": "MinGW Makefiles",
+            "generator": "Ninja",
             "binaryDir": "${sourceDir}/out/${presetName}",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
                 "CMAKE_C_COMPILER": "gcc.exe"
             }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "unix-debug",
+            "configurePreset": "unix-debug"
+        },
+        {
+            "name": "win-debug",
+            "configurePreset": "win-debug"
+        },
+        {
+            "name": "unix-release",
+            "configurePreset": "unix-release"
+        },
+        {
+            "name": "win-release",
+            "configurePreset": "win-release"
         }
     ]
 }

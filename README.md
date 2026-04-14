@@ -9,15 +9,21 @@ This repository contains starter code and resources for C programming. It is des
 - Instructions for compiling and running C programs
 
 ## Getting Started
+
 1. Clone the repository and sync the submodules:
+
     ```bash
     git clone https://github.com/DHANUSH-web/c-starter.git --recurse-submodules
     ```
+
 2. Navigate to the project directory:
+
     ```bash
     cd c-starter
     ```
+
 3. Build the project using the provided script:
+
     ```bash
     # For only building
     ./build build           # builds in debug by default [RECOMMENDED]
@@ -29,12 +35,14 @@ This repository contains starter code and resources for C programming. It is des
     ./build run --debug     # runs in debug preset
     ./build run --release   # runs in release preset
     ```
+
    This will:
    - Create a build directory
    - Configure CMake with the default preset
    - Build the project
    - Runs the executable
 4. Clean the project
+
     ```bash
     ./build clean           # cleans the entire build [RECOMMENDED]
     ./build clean --debug   # cleans only debug build
@@ -42,6 +50,7 @@ This repository contains starter code and resources for C programming. It is des
     ```
 
 Note: You can also use specific CMake presets:
+
 ```bash
 cmake --preset debug    # For debug build
 cmake --preset release  # For release build

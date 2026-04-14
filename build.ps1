@@ -30,6 +30,16 @@ function Run-Release {
     ./out/win-release/main.exe
 }
 
+function Test-Debug {
+    Build-Debug
+    ./out/win-debug/test_main.exe
+}
+
+function Test-Release {
+    Build-Release
+    ./out/win-release/test_main.exe
+}
+
 function Clean-Build {
     param([string]$Type)
     
@@ -77,14 +87,25 @@ switch ($Command) {
             }
         }
     }
+    "test" {
+        switch ($Option) {
+            $null { Test-Debug }
+            "--debug" { Test-Debug }
+            "--release" { Test-Release }
+            default {
+                Write-Host "Invalid option. Use --debug or --release."
+                exit 1
+            }
+        }
+    }
     "clean" {
         Clean-Build $Option
     }
     "help" {
-        Write-Host "Usage: .\build.ps1 [run|build|clean|help] [--debug|--release|--all]"
+        Write-Host "Usage: .\build.ps1 [run|build|test|clean|help] [--debug|--release|--all]"
     }
     default {
-        Write-Host "Usage: .\build.ps1 run [--debug|--release]"
+        Write-Host "Usage: .\build.ps1 [run|build|test|clean|help] [--debug|--release]"
         exit 1
     }
 }

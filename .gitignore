@@ -1,6 +1,6 @@
 # Ignore build directories
-/build/
-/out/
+out/
+logs/
 
 # Ignore CMake generated files
 CMakeCache.txt

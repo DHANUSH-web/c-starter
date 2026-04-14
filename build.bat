@@ -20,6 +20,14 @@ if "%~1"=="build" (
     exit /b 1
 )
 
+if "%~1"=="test" (
+    if "%~2"=="" goto :test_debug
+    if "%~2"=="--debug" goto :test_debug
+    if "%~2"=="--release" goto :test_release
+    echo Invalid option. Use --debug or --release.
+    exit /b 1
+)
+
 if "%~1"=="clean" (
     if "%~2"=="--debug" goto :clean_debug
     if "%~2"=="--release" goto :clean_release
@@ -29,8 +37,18 @@ if "%~1"=="clean" (
 if "%~1"=="help" goto :usage
 
 :usage
-echo Usage: build.bat [run^|build^|clean^|help] [--debug^|--release^|--all]
+echo Usage: build.bat [run^|build^|test^|clean^|help] [--debug^|--release^|--all]
 exit /b 1
+
+:test_debug
+call :build_debug
+.\out\win-debug\test_main.exe
+exit /b 0
+
+:test_release
+call :build_release
+.\out\win-release\test_main.exe
+exit /b 0
 
 :run_debug
 call :build_debug
