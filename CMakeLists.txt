@@ -25,11 +25,12 @@ add_subdirectory(lib/unity)
 # main target
 add_executable(main main.c)
 target_include_directories(main PRIVATE lib)
+target_link_libraries(main m)
 
 # test target
 add_executable(test_main tests/test_main.c main.c)
 target_compile_definitions(test_main PRIVATE UNIT_TEST)
 target_include_directories(test_main PRIVATE lib/logger lib lib/unity/src)
-target_link_libraries(test_main unity)
+target_link_libraries(test_main unity m)
 
 add_test(NAME UnitTests COMMAND test_main)
