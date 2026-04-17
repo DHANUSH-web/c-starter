@@ -80,10 +80,10 @@ void test_tea_party(void)
 
 void test_fizz_string(void)
 {
-    TEST_ASSERT_EQUAL("Fizz", fizz_string("fig"));
-    TEST_ASSERT_EQUAL("Buzz", fizz_string("dib"));
-    TEST_ASSERT_EQUAL("FizzBuzz", fizz_string("fib"));
-    TEST_ASSERT_EQUAL("hello", fizz_string("hello"));
+    TEST_ASSERT_EQUAL_STRING("Fizz", fizz_string("fig"));
+    TEST_ASSERT_EQUAL_STRING("Buzz", fizz_string("dib"));
+    TEST_ASSERT_EQUAL_STRING("FizzBuzz", fizz_string("fib"));
+    TEST_ASSERT_EQUAL_STRING("hello", fizz_string("hello"));
 }
 
 void test_fizz_string2(void)
