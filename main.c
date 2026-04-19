@@ -239,6 +239,21 @@ char* to_binary(unsigned int n)
     return bits;
 }
 
+const int sum67(const int* nums, const int size)
+{
+    int sum = 0;
+    BOOL skip = FALSE;
+
+    for (int i = 0; i < size; i++)
+    {
+        if (nums[i] == 6) skip = TRUE;
+        else if (nums[i] == 7 && skip) skip = FALSE;
+        else if (!skip) sum += nums[i];
+    }
+
+    return sum;
+}
+
 #ifndef UNIT_TEST
 int main()
 {

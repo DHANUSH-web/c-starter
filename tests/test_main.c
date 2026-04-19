@@ -170,6 +170,27 @@ void test_to_binary(void)
     free(TEST2);
     free(TEST3);
 }
+
+void test_sum67(void)
+{
+    const int TEST_ARR1[] = {1, 2, 2};
+    const int TEST_ARR2[] = {1, 2, 2, 6, 99, 99, 7};
+    const int TEST_ARR3[] = {1, 1, 6, 7, 2};
+    const int TEST_ARR4[] = {6, 7, 2};
+    const int TEST_ARR5[] = {1, 6, 7, 6, 7};
+    const int TEST_ARR6[] = {1, 6, 7, 2, 6, 99, 7};
+    const int TEST_ARR7[] = {1, 6, 99, 7, 7};
+    const int TEST_ARR8[] = {6, 7, 7};
+
+    TEST_ASSERT_EQUAL(5, sum67(TEST_ARR1, sizeof(TEST_ARR1) / sizeof(TEST_ARR1[0])));
+    TEST_ASSERT_EQUAL(5, sum67(TEST_ARR2, sizeof(TEST_ARR2) / sizeof(TEST_ARR2[0])));
+    TEST_ASSERT_EQUAL(4, sum67(TEST_ARR3, sizeof(TEST_ARR3) / sizeof(TEST_ARR3[0])));
+    TEST_ASSERT_EQUAL(2, sum67(TEST_ARR4, sizeof(TEST_ARR4) / sizeof(TEST_ARR4[0])));
+    TEST_ASSERT_EQUAL(1, sum67(TEST_ARR5, sizeof(TEST_ARR5) / sizeof(TEST_ARR5[0])));
+    TEST_ASSERT_EQUAL(3, sum67(TEST_ARR6, sizeof(TEST_ARR6) / sizeof(TEST_ARR6[0])));
+    TEST_ASSERT_EQUAL(8, sum67(TEST_ARR7, sizeof(TEST_ARR7) / sizeof(TEST_ARR7[0])));
+    TEST_ASSERT_EQUAL(7, sum67(TEST_ARR8, sizeof(TEST_ARR8) / sizeof(TEST_ARR8[0])));
+}
 // ********************* MAIN *********************
 
 void tearDown(void) {}
@@ -200,6 +221,7 @@ int main(void)
     RUN_TEST(test_red_ticket);
     RUN_TEST(test_green_ticket);
     RUN_TEST(test_to_binary);
+    RUN_TEST(test_sum67);
 
     return UNITY_END();
 }

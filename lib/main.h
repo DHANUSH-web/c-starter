@@ -64,5 +64,5 @@ const int green_ticket(
     const int c
 );
 char* to_binary(unsigned int n);
-
+const int sum67(const int* nums, const int size);
 #endif // MAIN_H
