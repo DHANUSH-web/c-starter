@@ -282,10 +282,7 @@ int main()
     // printf("Schwarzschild Radius: %f M\n", sr);
     // BLACK HOLE SIMULATION
 
-    char* bits = to_binary(27);
-    printf("0b'%s\n", bits);
-    free(bits);
-
+    printf("Run `mac test` to test your logic!!\n");
     return 0;
 }
 #endif
