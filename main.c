@@ -254,6 +254,14 @@ const int sum67(const int* nums, const int size)
     return sum;
 }
 
+const BOOL has22(const int* nums, const int size)
+{
+    for (int i = 0; i < size; i++)
+        if (nums[i] == 2 && nums[i+1] == 2)
+            return TRUE;
+    return FALSE;
+}
+
 #ifndef UNIT_TEST
 int main()
 {
