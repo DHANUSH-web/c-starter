@@ -202,6 +202,17 @@ void test_has22(void)
     TEST_ASSERT_FALSE(has22(TEST_ARR2, sizeof(TEST_ARR2) / sizeof(TEST_ARR2[0])));
     TEST_ASSERT_FALSE(has22(TEST_ARR3, sizeof(TEST_ARR3) / sizeof(TEST_ARR3[0])));
 }
+
+void test_lucky13(void)
+{
+    const int TEST_ARR1[] = {0, 2, 4};
+    const int TEST_ARR2[] = {1, 2, 3};
+    const int TEST_ARR3[] = {1, 2, 4};
+
+    TEST_ASSERT_TRUE(lucky13(TEST_ARR1, sizeof(TEST_ARR1) / sizeof(TEST_ARR1[0])));
+    TEST_ASSERT_FALSE(lucky13(TEST_ARR2, sizeof(TEST_ARR2) / sizeof(TEST_ARR2[0])));
+    TEST_ASSERT_FALSE(lucky13(TEST_ARR3, sizeof(TEST_ARR3) / sizeof(TEST_ARR3[0])));
+}
 // ********************* MAIN *********************
 
 void tearDown(void) {}
@@ -234,6 +245,7 @@ int main(void)
     RUN_TEST(test_to_binary);
     RUN_TEST(test_sum67);
     RUN_TEST(test_has22);
+    RUN_TEST(test_lucky13);
 
     return UNITY_END();
 }

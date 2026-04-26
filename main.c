@@ -261,6 +261,15 @@ const BOOL has22(const int* nums, const int size)
     return FALSE;
 }
 
+const BOOL lucky13(const int* nums, const int size)
+{
+    for (int i = 0; i < size; i++)
+        if (nums[i] == 1 || nums[i] == 3)
+            return FALSE;
+
+    return TRUE;
+}
+
 #ifndef UNIT_TEST
 int main()
 {
