@@ -80,10 +80,10 @@ void test_tea_party(void)
 
 void test_fizz_string(void)
 {
-    TEST_ASSERT_EQUAL("Fizz", fizz_string("fig"));
-    TEST_ASSERT_EQUAL("Buzz", fizz_string("dib"));
-    TEST_ASSERT_EQUAL("FizzBuzz", fizz_string("fib"));
-    TEST_ASSERT_EQUAL("hello", fizz_string("hello"));
+    TEST_ASSERT_EQUAL_STRING("Fizz", fizz_string("fig"));
+    TEST_ASSERT_EQUAL_STRING("Buzz", fizz_string("dib"));
+    TEST_ASSERT_EQUAL_STRING("FizzBuzz", fizz_string("fib"));
+    TEST_ASSERT_EQUAL_STRING("hello", fizz_string("hello"));
 }
 
 void test_fizz_string2(void)
@@ -170,6 +170,60 @@ void test_to_binary(void)
     free(TEST2);
     free(TEST3);
 }
+
+void test_sum67(void)
+{
+    const int TEST_ARR1[] = {1, 2, 2};
+    const int TEST_ARR2[] = {1, 2, 2, 6, 99, 99, 7};
+    const int TEST_ARR3[] = {1, 1, 6, 7, 2};
+    const int TEST_ARR4[] = {6, 7, 2};
+    const int TEST_ARR5[] = {1, 6, 7, 6, 7};
+    const int TEST_ARR6[] = {1, 6, 7, 2, 6, 99, 7};
+    const int TEST_ARR7[] = {1, 6, 99, 7, 7};
+    const int TEST_ARR8[] = {6, 7, 7};
+
+    TEST_ASSERT_EQUAL(5, sum67(TEST_ARR1, sizeof(TEST_ARR1) / sizeof(TEST_ARR1[0])));
+    TEST_ASSERT_EQUAL(5, sum67(TEST_ARR2, sizeof(TEST_ARR2) / sizeof(TEST_ARR2[0])));
+    TEST_ASSERT_EQUAL(4, sum67(TEST_ARR3, sizeof(TEST_ARR3) / sizeof(TEST_ARR3[0])));
+    TEST_ASSERT_EQUAL(2, sum67(TEST_ARR4, sizeof(TEST_ARR4) / sizeof(TEST_ARR4[0])));
+    TEST_ASSERT_EQUAL(1, sum67(TEST_ARR5, sizeof(TEST_ARR5) / sizeof(TEST_ARR5[0])));
+    TEST_ASSERT_EQUAL(3, sum67(TEST_ARR6, sizeof(TEST_ARR6) / sizeof(TEST_ARR6[0])));
+    TEST_ASSERT_EQUAL(8, sum67(TEST_ARR7, sizeof(TEST_ARR7) / sizeof(TEST_ARR7[0])));
+    TEST_ASSERT_EQUAL(7, sum67(TEST_ARR8, sizeof(TEST_ARR8) / sizeof(TEST_ARR8[0])));
+}
+
+void test_has22(void)
+{
+    const int TEST_ARR1[] = {1, 2, 2};
+    const int TEST_ARR2[] = {1, 2, 1, 2, 5, 7};
+    const int TEST_ARR3[] = {1, 1, 2};
+    
+    TEST_ASSERT_TRUE(has22(TEST_ARR1, sizeof(TEST_ARR1) / sizeof(TEST_ARR1[0])));
+    TEST_ASSERT_FALSE(has22(TEST_ARR2, sizeof(TEST_ARR2) / sizeof(TEST_ARR2[0])));
+    TEST_ASSERT_FALSE(has22(TEST_ARR3, sizeof(TEST_ARR3) / sizeof(TEST_ARR3[0])));
+}
+
+void test_lucky13(void)
+{
+    const int TEST_ARR1[] = {0, 2, 4};
+    const int TEST_ARR2[] = {1, 2, 3};
+    const int TEST_ARR3[] = {1, 2, 4};
+
+    TEST_ASSERT_TRUE(lucky13(TEST_ARR1, sizeof(TEST_ARR1) / sizeof(TEST_ARR1[0])));
+    TEST_ASSERT_FALSE(lucky13(TEST_ARR2, sizeof(TEST_ARR2) / sizeof(TEST_ARR2[0])));
+    TEST_ASSERT_FALSE(lucky13(TEST_ARR3, sizeof(TEST_ARR3) / sizeof(TEST_ARR3[0])));
+}
+
+void test_sum28(void)
+{
+    const int TEST_ARR1[] = {2, 3, 2, 2, 4, 2};
+    const int TEST_ARR2[] = {2, 3, 2, 2, 4, 2, 2};
+    const int TEST_ARR3[] = {1, 2, 3, 4};
+
+    TEST_ASSERT_TRUE(sum28(TEST_ARR1, sizeof(TEST_ARR1) / sizeof(TEST_ARR1[0])));
+    TEST_ASSERT_FALSE(sum28(TEST_ARR2, sizeof(TEST_ARR2) / sizeof(TEST_ARR2[0])));
+    TEST_ASSERT_FALSE(sum28(TEST_ARR3, sizeof(TEST_ARR3) / sizeof(TEST_ARR3[0])));
+}
 // ********************* MAIN *********************
 
 void tearDown(void) {}
@@ -200,6 +254,10 @@ int main(void)
     RUN_TEST(test_red_ticket);
     RUN_TEST(test_green_ticket);
     RUN_TEST(test_to_binary);
+    RUN_TEST(test_sum67);
+    RUN_TEST(test_has22);
+    RUN_TEST(test_lucky13);
+    RUN_TEST(test_sum28);
 
     return UNITY_END();
 }
