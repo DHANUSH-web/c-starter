@@ -67,4 +67,5 @@ char* to_binary(unsigned int n);
 const int sum67(const int* nums, const int size);
 const BOOL has22(const int* nums, const int size);
 const BOOL lucky13(const int* nums, const int size);
+const BOOL sum28(const int* nums, const int size);
 #endif // MAIN_H

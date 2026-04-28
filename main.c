@@ -270,6 +270,17 @@ const BOOL lucky13(const int* nums, const int size)
     return TRUE;
 }
 
+const BOOL sum28(const int* nums, const int size)
+{
+    int sum = 0;
+    
+    for (int i = 0; i < size; i++)
+        if (nums[i] == 2)
+            sum += nums[i];
+    
+    return sum == 8;
+}
+
 #ifndef UNIT_TEST
 int main()
 {
