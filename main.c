@@ -281,6 +281,19 @@ const BOOL sum28(const int* nums, const int size)
     return sum == 8;
 }
 
+const BOOL more14(const int* nums, const int size)
+{
+    int count = 0;
+
+    for (int i = 0; i < size; i++)
+    {
+        if (nums[i] == 1) count++;
+        if (nums[i] == 4) count--;
+    }
+
+    return count > 0;
+}
+
 #ifndef UNIT_TEST
 int main()
 {
