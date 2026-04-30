@@ -235,6 +235,32 @@ void test_more14(void)
     TEST_ASSERT_FALSE(more14(TEST_ARR2, sizeof(TEST_ARR2) / sizeof(TEST_ARR2[0])));
     TEST_ASSERT_TRUE(more14(TEST_ARR3, sizeof(TEST_ARR3) / sizeof(TEST_ARR3[0])));
 }
+
+void test_fizz_array(void)
+{
+    int* TEST1 = fizz_array(4);
+    int* TEST2 = fizz_array(1);
+    int* TEST3 = fizz_array(10);
+
+    const int TEST1_EXPECTED[] = {0, 1, 2, 3};
+    const int TEST2_EXPECTED[] = {0};
+    const int TEST3_EXPECTED[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+    // TEST1
+    for (int i = 0; i < 4; i++)
+        TEST_ASSERT_EQUAL(TEST1_EXPECTED[i], TEST1[i]);
+
+    // TEST2
+    TEST_ASSERT_EQUAL(TEST2_EXPECTED[0], TEST2[0]);
+
+    // TEST3
+    for (int i = 0; i < 4; i++)
+        TEST_ASSERT_EQUAL(TEST3_EXPECTED[i], TEST3[i]);
+    
+    free(TEST1);
+    free(TEST2);
+    free(TEST3);
+}
 // ********************* MAIN *********************
 
 void tearDown(void) {}
@@ -270,6 +296,7 @@ int main(void)
     RUN_TEST(test_lucky13);
     RUN_TEST(test_sum28);
     RUN_TEST(test_more14);
+    RUN_TEST(test_fizz_array);
 
     return UNITY_END();
 }

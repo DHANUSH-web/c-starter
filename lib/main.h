@@ -69,4 +69,5 @@ const BOOL has22(const int* nums, const int size);
 const BOOL lucky13(const int* nums, const int size);
 const BOOL sum28(const int* nums, const int size);
 const BOOL more14(const int* nums, const int size);
+int* fizz_array(const int n);
 #endif // MAIN_H
