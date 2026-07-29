@@ -4,6 +4,8 @@
 #include <math.h>
 
 #define MAX_BITS 64
+#define AND &&
+#define OR ||
 
 // BEGIN: MAIN UTILS
 
