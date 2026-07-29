@@ -423,6 +423,25 @@ BOOL mod_three(const int* nums, const int size)
     return FALSE;
 }
 
+BOOL have_three(const int *nums, const int size)
+{
+    int count = 0;
+
+    for (int i = 0; i < size - 1; i++)
+    {
+        if (nums[i] == 3 AND nums[i + 1] != 3)
+            count++;
+
+        if (nums[i] == 3 AND nums[i + 1] == 3)
+            return FALSE;
+    }
+
+    if (size > 2 AND nums[size - 1] == 3 AND nums[size - 2] != 3)
+        count++;
+
+    return count == 3;
+}
+
 #ifndef UNIT_TEST
 int main()
 {

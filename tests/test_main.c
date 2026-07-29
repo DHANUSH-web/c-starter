@@ -390,6 +390,16 @@ void test_mod_three(void)
     TEST_ASSERT_TRUE(mod_three(TEST_ARR3, sizeof(TEST_ARR3) / sizeof(TEST_ARR3[0])));
 }
 
+void test_have_three(void)
+{
+    const int TEST_ARR1[] = {3, 1, 3, 1, 3};
+    const int TEST_ARR2[] = {3, 1, 3, 3};
+    const int TEST_ARR3[] = {3, 4, 3, 3, 4};
+
+    TEST_ASSERT_TRUE(have_three(TEST_ARR1, sizeof(TEST_ARR1) / sizeof(TEST_ARR1[0])));
+    TEST_ASSERT_FALSE(have_three(TEST_ARR2, sizeof(TEST_ARR2) / sizeof(TEST_ARR2[0])));
+    TEST_ASSERT_FALSE(have_three(TEST_ARR3, sizeof(TEST_ARR3) / sizeof(TEST_ARR3[0])));
+}
 // ********************* MAIN *********************
 
 void tearDown(void) {}
@@ -435,6 +445,7 @@ int main(void)
     RUN_TEST(test_has77);
     RUN_TEST(test_has12);
     RUN_TEST(test_mod_three);
+    RUN_TEST(test_have_three);
 
     return UNITY_END();
 }

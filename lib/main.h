@@ -79,4 +79,5 @@ int match_up(const int* nums1, const int* num2, const int size);
 BOOL has77(const int* nums, const int size);
 BOOL has12(const int* nums, const int size);
 BOOL mod_three(const int* nums, const int size);
+BOOL have_three(const int* nums, const int size);
 #endif // MAIN_H
