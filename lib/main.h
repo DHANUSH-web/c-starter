@@ -80,4 +80,5 @@ BOOL has77(const int* nums, const int size);
 BOOL has12(const int* nums, const int size);
 BOOL mod_three(const int* nums, const int size);
 BOOL have_three(const int* nums, const int size);
+BOOL two_two(const int* nums, const int size);
 #endif // MAIN_H

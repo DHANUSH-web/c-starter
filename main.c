@@ -1,3 +1,5 @@
+#include <limits.h>
+#include <stdint.h>
 #include <string.h>
 #include <stdio.h>
 #include <logger/logger.h>
@@ -440,6 +442,36 @@ BOOL have_three(const int *nums, const int size)
         count++;
 
     return count == 3;
+}
+
+BOOL two_two(const int* nums, const int size)
+{
+    if (size == 0) return TRUE;
+    if (size == 1) return nums[0] != 2;
+
+    BOOL couple = FALSE;
+    BOOL only, both;
+    unsigned int count = 0;
+
+    for (int i = 0; i < size-1; i++)
+    {
+        only = (nums[i] == 2 && nums[i+1] != 2) || (nums[i] != 2 && nums[i+1] == 2);
+        both = (nums[i] == 2 && nums[i+1] == 2);
+
+        if (only)
+        {
+            couple = FALSE;
+            count++;
+        }
+
+        if (both)
+        {
+            couple = TRUE;
+            i++;
+        }
+    }
+
+    return couple || count == 0;
 }
 
 #ifndef UNIT_TEST
