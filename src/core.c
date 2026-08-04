@@ -1,9 +1,10 @@
-#include <string.h>
 #include <stdio.h>
-#include <logger/logger.h>
+#include <stdlib.h>
+#include <limits.h>
+#include <stdint.h>
+#include <string.h>
 #include <math.h>
-
-#define MAX_BITS 64
+#include "core.h"
 
 // BEGIN: MAIN UTILS
 
@@ -133,14 +134,14 @@ double calculate_time_dilation(const double mass_kg, const double distance_r, co
 
 int tea_party(const int tea, const int candy)
 {
-    return (tea < 5 || candy < 5) ? 0 : (tea >= candy * 2 || candy >= tea * 2) ? 2 : 1;
+    return (tea < 5 OR candy < 5) ? 0 : (tea >= candy * 2 OR candy >= tea * 2) ? 2 : 1;
 }
 
-const char *fizz_string(const char *str)
+char* fizz_string(char *str)
 {
     const size_t size = strlen(str);
 
-    if (str[0] == 'f' && str[size - 1] == 'b')
+    if (str[0] == 'f' AND str[size - 1] == 'b')
         return "FizzBuzz";
     if (str[0] == 'f')
         return "Fizz";
@@ -150,9 +151,9 @@ const char *fizz_string(const char *str)
     return str;
 }
 
-const char *fizz_string2(const int n)
+char *fizz_string2(const int n)
 {
-    if (n % 3 == 0 && n % 5 == 0)
+    if (n % 3 == 0 AND n % 5 == 0)
         return "FizzBuzz!";
     if (n % 3 == 0)
         return "Fizz!";
@@ -168,7 +169,7 @@ const char *fizz_string2(const int n)
 
 BOOL two_as_one(const int a, const int b, const int c)
 {
-    return a + b == c || a + c == b || b + c == a;
+    return a + b == c OR a + c == b OR b + c == a;
 }
 
 BOOL in_order(
@@ -177,7 +178,7 @@ BOOL in_order(
     const int c,
     BOOL bOk)
 {
-    return (bOk || b > a) && c > b;
+    return (bOk OR b > a) AND c > b;
 }
 
 BOOL in_order_equal(
@@ -186,22 +187,22 @@ BOOL in_order_equal(
     const int c,
     const BOOL equal_ok)
 {
-    return (equal_ok && a <= b && b <= c) || (a < b && b < c);
+    return (equal_ok AND a <= b AND b <= c) OR (a < b AND b < c);
 }
 
 BOOL last_digit(const int a, const int b, const int c)
 {
-    return a % 10 == b % 10 || b % 10 == c % 10 || a % 10 == c % 10;
+    return a % 10 == b % 10 OR b % 10 == c % 10 OR a % 10 == c % 10;
 }
 
 BOOL less_by_10(const int a, const int b, const int c)
 {
-    return abs(a - b) >= 10 || abs(b - c) >= 10 || abs(a - c) >= 10;
+    return abs(a - b) >= 10 OR abs(b - c) >= 10 OR abs(a - c) >= 10;
 }
 
 int without_doubles(const int die1, const int die2, const BOOL no_doubles)
 {
-    return no_doubles && die1 == die2 ? (die1 == 6 ? 1 : die1 + 1) + die2 : die1 + die2;
+    return no_doubles AND die1 == die2 ? (die1 == 6 ? 1 : die1 + 1) + die2 : die1 + die2;
 }
 
 int max_mod5(const int a, const int b)
@@ -211,15 +212,15 @@ int max_mod5(const int a, const int b)
 
 int red_ticket(const int a, const int b, const int c)
 {
-    return a == 2 && b == 2 && c == 2 ? 10 : a == b && b == c ? 5 : a != b && a != c ? 1 : 0;
+    return a == 2 AND b == 2 AND c == 2 ? 10 : a == b AND b == c ? 5 : a != b AND a != c ? 1 : 0;
 }
 
 int green_ticket(const int a, const int b, const int c)
 {
-    return a == b && b == c ? 20 : a == b || a == c || b == c ? 10 : 0;
+    return a == b AND b == c ? 20 : a == b OR a == c OR b == c ? 10 : 0;
 }
 
-const char* to_binary(unsigned int n)
+char* to_binary(unsigned int n)
 {
     char* bits = malloc(MAX_BITS + 1);
 
@@ -246,7 +247,7 @@ int sum67(const int* nums, const int size)
     for (int i = 0; i < size; i++)
     {
         if (nums[i] == 6) skip = TRUE;
-        else if (nums[i] == 7 && skip) skip = FALSE;
+        else if (nums[i] == 7 AND skip) skip = FALSE;
         else if (!skip) sum += nums[i];
     }
 
@@ -256,7 +257,7 @@ int sum67(const int* nums, const int size)
 BOOL has22(const int* nums, const int size)
 {
     for (int i = 0; i < size - 1; i++)
-        if (nums[i] == 2 && nums[i+1] == 2)
+        if (nums[i] == 2 AND nums[i+1] == 2)
             return TRUE;
     return FALSE;
 }
@@ -264,7 +265,7 @@ BOOL has22(const int* nums, const int size)
 BOOL lucky13(const int* nums, const int size)
 {
     for (int i = 0; i < size; i++)
-        if (nums[i] == 1 || nums[i] == 3)
+        if (nums[i] == 1 OR nums[i] == 3)
             return FALSE;
 
     return TRUE;
@@ -307,7 +308,7 @@ int* fizz_array(const int n)
 BOOL only14(const int* nums, const int size)
 {
     for (int i = 0; i < size; i++)
-        if (nums[i] != 1 && nums[i] != 4)
+        if (nums[i] != 1 AND nums[i] != 4)
             return FALSE;
     
     return TRUE;
@@ -336,16 +337,16 @@ BOOL no14(const int* nums, const int size)
     {
         if (nums[i] == 1) has1 = TRUE;
         if (nums[i] == 4) has4 = TRUE;
-        if (has1 && has4) return FALSE;
+        if (has1 AND has4) return FALSE;
     }
 
-    return !(has1 && has4);
+    return !(has1 AND has4);
 }
 
 BOOL is_everywhere(const int* nums, const int val, const int size)
 {
     for (int i = 0; i < size - 1; i++)
-        if (nums[i] != val && nums[i+1] != val)
+        if (nums[i] != val AND nums[i+1] != val)
             return FALSE;
 
     return TRUE;
@@ -358,9 +359,9 @@ BOOL either24(const int* nums, const int size)
 
     for (int i = 0; i < size-1; i++)
     {
-        if (is2 && is4) return FALSE;
-        if (nums[i] == 2 && nums[i+1] == 2) is2 = TRUE;
-        if (nums[i] == 4 && nums[i+1] == 4) is4 = TRUE;
+        if (is2 AND is4) return FALSE;
+        if (nums[i] == 2 AND nums[i+1] == 2) is2 = TRUE;
+        if (nums[i] == 4 AND nums[i+1] == 4) is4 = TRUE;
     }
 
     return is2 != is4;
@@ -371,7 +372,7 @@ int match_up(const int* nums1, const int* nums2, const int size)
     int count = 0;
 
     for (int i = 0; i < size; i++)
-        if (nums1[i] != nums2[i] && abs(nums1[i] - nums2[i]) <= 2)
+        if (nums1[i] != nums2[i] AND abs(nums1[i] - nums2[i]) <= 2)
             count++;
 
     return count;
@@ -380,7 +381,7 @@ int match_up(const int* nums1, const int* nums2, const int size)
 BOOL has77(const int* nums, const int size)
 {
     for (int i = 0; i < size-2; i++)
-        if ((nums[i] == 7 && (nums[i+1] == 7 || nums[i+2] == 7)) || (nums[i+1] == 7 && nums[i+2] == 7))
+        if ((nums[i] == 7 AND (nums[i+1] == 7 OR nums[i+2] == 7)) OR (nums[i+1] == 7 AND nums[i+2] == 7))
             return TRUE;
     
     return FALSE;
@@ -392,10 +393,10 @@ BOOL has12(const int* nums, const int size)
 
     for (int i = 0; i < size; i++)
     {
-        if (nums[i] == 1 && !found)
+        if (nums[i] == 1 AND !found)
             found = 1;
 
-        if (nums[i] == 2 && found)
+        if (nums[i] == 2 AND found)
             return TRUE;
     }
 
@@ -410,7 +411,7 @@ BOOL mod_three(const int* nums, const int size)
                 nums[i]   % 2 == 0 &&
                 nums[i+1] % 2 == 0 &&
                 nums[i+2] % 2 == 0
-            ) || (
+            ) OR (
                 nums[i]   % 2 == 1 &&
                 nums[i+1] % 2 == 1 &&
                 nums[i+2] % 2 == 1
@@ -421,27 +422,51 @@ BOOL mod_three(const int* nums, const int size)
     return FALSE;
 }
 
-#ifndef UNIT_TEST
-int main()
+BOOL have_three(const int *nums, const int size)
 {
-    // printf("Run `./build test` to test your logic!!\n");
+    int count = 0;
 
-    // BLACK HOLE SIMULATION
+    for (int i = 0; i < size - 1; i++)
+    {
+        if (nums[i] == 3 AND nums[i + 1] != 3)
+            count++;
 
-    // printf("Black Hole Simulation\n");
+        if (nums[i] == 3 AND nums[i + 1] == 3)
+            return FALSE;
+    }
 
-    // const char* BH = "Sagittarius A*";
-    // const double mass_kg = mass_from_orbit(1e9, 2e7);
-    // const double solar_masses = to_solar_mass(mass_kg);
-    // const double sr = get_schwarzschild_radius(mass_kg);
+    if (size > 2 AND nums[size - 1] == 3 AND nums[size - 2] != 3)
+        count++;
 
-    // printf("Black Hole: %s\n", BH);
-    // printf("Mass of Black Hole: %f KG\n", mass_kg);
-    // printf("Mass of Black Hole: %f SM\n", solar_masses);
-    // printf("Schwarzschild Radius: %f M\n", sr);
-    // BLACK HOLE SIMULATION
-
-    printf("Run `mac test` to test your logic!!\n");
-    return 0;
+    return count == 3;
 }
-#endif
+
+BOOL two_two(const int* nums, const int size)
+{
+    if (size == 0) return TRUE;
+    if (size == 1) return nums[0] != 2;
+
+    BOOL couple = FALSE;
+    BOOL only, both;
+    unsigned int count = 0;
+
+    for (int i = 0; i < size-1; i++)
+    {
+        only = (nums[i] == 2 && nums[i+1] != 2) || (nums[i] != 2 && nums[i+1] == 2);
+        both = (nums[i] == 2 && nums[i+1] == 2);
+
+        if (only)
+        {
+            couple = FALSE;
+            count++;
+        }
+
+        if (both)
+        {
+            couple = TRUE;
+            i++;
+        }
+    }
+
+    return couple || count == 0;
+}

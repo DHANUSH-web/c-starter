@@ -3,9 +3,9 @@
 # build and run the executable
 if [[ "$1" == "run" ]]; then
     if [[ -z "$2" || "$2" == "--debug" || "$2" == "-d" ]]; then
-        cmake --preset unix-debug && cmake --build ./out/unix-debug && ./out/unix-debug/main
+        ./out/debug/main 2>/dev/null || echo "Debug target not found. Run 'mac build' first"
     elif [[ "$2" == "--release" || "$2" == "-r" ]]; then
-        cmake --preset unix-release && cmake --build ./out/unix-release && ./out/unix-release/main
+        ./out/release/main 2>/dev/null || echo "Release target not found. Run 'mac build --release' first"
     else
         echo "Invalid option. Use --debug or --release."
         exit 1
@@ -13,33 +13,57 @@ if [[ "$1" == "run" ]]; then
 # build the executable
 elif [[ "$1" == "build" ]]; then
     if [[ -z "$2" || "$2" == "--debug" || "$2" == "-d" ]]; then
-        echo "Building debug version..."
-        cmake --preset unix-debug && cmake --build ./out/unix-debug
-    elif [[ "$2" == "--release" || "$2" == "-r" ]]; then
-        echo "Building release version..."
-        cmake --preset unix-release && cmake --build ./out/unix-release
-    elif [[ "$2" == "--all" || "$2" == "-a" ]]; then
-        echo "Building both debug and release versions..."
+        mkdir -p out/debug
 
+        # main target
+        clang \
+        -Iinclude \
+        $(find src -name "*.c") \
+        -o out/debug/main
+
+        # test target
+        clang \
+        -Iinclude \
+        -Iextras/unity/src \
+        src/core.c \
+        $(find tests -name "*.c") \
+        extras/unity/src/unity.c \
+        -o out/debug/test_main
+    elif [[ "$2" == "--release" || "$2" == "-r" ]]; then
+        mkdir -p out/release
+
+        # main target
+        clang \
+        -O3 -march=native \
+        -Iinclude \
+        $(find src -name "*.c") \
+        -o out/release/main
+
+        # test target
+        clang \
+        -O3 -march=native \
+        -Iinclude \
+        -Iextras/unity/src \
+        src/core.c \
+        $(find tests -name "*.c") \
+        extras/unity/src/unity.c \
+        -o out/release/test_main
+    elif [[ "$2" == "--all" || "$2" == "-a" ]]; then
         # Build for debug
-        echo -e "\e[32mBuilding debug version...\e[0m"
-        cmake --preset unix-debug && cmake --build ./out/unix-debug
-        
+        ./build build -d
+
         # Build for release
-        echo -e "\e[32mBuilding release version...\e[0m"
-        cmake --preset unix-release && cmake --build ./out/unix-release
+        ./build build -r
     else
         echo "Invalid option. Use --debug or --release or --all."
         exit 1
     fi
 # unittest
 elif [[ "$1" == "test" ]]; then
-    if [[ -z $2 || "$2" == "--debug" || "$2" == "-d" ]]; then
-        ./build build $2
-        ./out/unix-debug/test_main
+    if [[ -z "$2" || "$2" == "--debug" || "$2" == "-d" ]]; then
+        ./out/debug/test_main 2>/dev/null || echo "Debug test target not found. Run 'mac build' first"
     elif [[ "$2" == "--release" || "$2" == "-r" ]]; then
-        ./build build $2
-        ./out/unix-release/test_main
+        ./out/release/test_main 2>/dev/null || echo "Release test target not found. Run 'mac build --release' first"
     else
         echo "No test target found!!"
         exit 1;
@@ -47,13 +71,13 @@ elif [[ "$1" == "test" ]]; then
 # clean the build directory
 elif [[ "$1" == "clean" ]]; then
     if [[ "$2" == "--debug" || "$2" == "-d" ]]; then
-        rm -rf ./out/unix-debug
+        rm -rf out/debug
         echo "Cleaned debug build directory."
     elif [[ "$2" == "--release" || "$2" == "-r" ]]; then
-        rm -rf ./out/unix-release
+        rm -rf out/release
         echo "Cleaned release build directory."
     else
-        rm -rf ./out
+        rm -rf out
         echo "Cleaned all build directories."
     fi
 elif [[ "$1" == "help" ]]; then
