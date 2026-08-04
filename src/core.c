@@ -1,13 +1,10 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include <limits.h>
 #include <stdint.h>
 #include <string.h>
-#include <stdio.h>
-#include <logger/logger.h>
 #include <math.h>
-
-#define MAX_BITS 64
-#define AND &&
-#define OR ||
+#include "core.h"
 
 // BEGIN: MAIN UTILS
 
@@ -140,7 +137,7 @@ int tea_party(const int tea, const int candy)
     return (tea < 5 OR candy < 5) ? 0 : (tea >= candy * 2 OR candy >= tea * 2) ? 2 : 1;
 }
 
-const char *fizz_string(const char *str)
+char* fizz_string(char *str)
 {
     const size_t size = strlen(str);
 
@@ -154,7 +151,7 @@ const char *fizz_string(const char *str)
     return str;
 }
 
-const char *fizz_string2(const int n)
+char *fizz_string2(const int n)
 {
     if (n % 3 == 0 AND n % 5 == 0)
         return "FizzBuzz!";
@@ -223,7 +220,7 @@ int green_ticket(const int a, const int b, const int c)
     return a == b AND b == c ? 20 : a == b OR a == c OR b == c ? 10 : 0;
 }
 
-const char* to_binary(unsigned int n)
+char* to_binary(unsigned int n)
 {
     char* bits = malloc(MAX_BITS + 1);
 
@@ -473,28 +470,3 @@ BOOL two_two(const int* nums, const int size)
 
     return couple || count == 0;
 }
-
-#ifndef UNIT_TEST
-int main()
-{
-    // printf("Run `./build test` to test your logic!!\n");
-
-    // BLACK HOLE SIMULATION
-
-    // printf("Black Hole Simulation\n");
-
-    // const char* BH = "Sagittarius A*";
-    // const double mass_kg = mass_from_orbit(1e9, 2e7);
-    // const double solar_masses = to_solar_mass(mass_kg);
-    // const double sr = get_schwarzschild_radius(mass_kg);
-
-    // printf("Black Hole: %s\n", BH);
-    // printf("Mass of Black Hole: %f KG\n", mass_kg);
-    // printf("Mass of Black Hole: %f SM\n", solar_masses);
-    // printf("Schwarzschild Radius: %f M\n", sr);
-    // BLACK HOLE SIMULATION
-
-    printf("Run `mac test` to test your logic!!\n");
-    return 0;
-}
-#endif
