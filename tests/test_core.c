@@ -410,7 +410,18 @@ void test_two_two(void)
     TEST_ASSERT_TRUE(two_two(TEST_ARR1, sizeof(TEST_ARR1) / sizeof(TEST_ARR1[0])));
     TEST_ASSERT_TRUE(two_two(TEST_ARR2, sizeof(TEST_ARR2) / sizeof(TEST_ARR2[0])));
     TEST_ASSERT_FALSE(two_two(TEST_ARR3, sizeof(TEST_ARR3) / sizeof(TEST_ARR3[0])));
-}// ********************* MAIN *********************
+}
+
+void test_same_ends(void)
+{
+    const int TEST_ARR[] = {5, 6, 45, 99, 13, 5, 6};
+
+    TEST_ASSERT_FALSE(same_ends(TEST_ARR, 1, sizeof(TEST_ARR) / sizeof(TEST_ARR[0])));
+    TEST_ASSERT_TRUE(same_ends(TEST_ARR, 2, sizeof(TEST_ARR) / sizeof(TEST_ARR[0])));
+    TEST_ASSERT_FALSE(same_ends(TEST_ARR, 3, sizeof(TEST_ARR) / sizeof(TEST_ARR[0])));
+}
+
+// ********************* MAIN *********************
 
 void tearDown(void) {}
 
@@ -457,6 +468,7 @@ int main(void)
     RUN_TEST(test_mod_three);
     RUN_TEST(test_have_three);
     RUN_TEST(test_two_two);
+    RUN_TEST(test_same_ends);
 
     return UNITY_END();
 }
