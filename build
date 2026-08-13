@@ -3,9 +3,9 @@
 # build and run the executable
 if [[ "$1" == "run" ]]; then
     if [[ -z "$2" || "$2" == "--debug" || "$2" == "-d" ]]; then
-        ./out/debug/main 2>/dev/null || echo "Debug target not found. Run 'mac build' first"
+        ./out/debug/c-codingbat 2>/dev/null || echo "Debug target not found. Run 'mac build' first"
     elif [[ "$2" == "--release" || "$2" == "-r" ]]; then
-        ./out/release/main 2>/dev/null || echo "Release target not found. Run 'mac build --release' first"
+        ./out/release/c-codingbat 2>/dev/null || echo "Release target not found. Run 'mac build --release' first"
     else
         echo "Invalid option. Use --debug or --release."
         exit 1
@@ -19,7 +19,7 @@ elif [[ "$1" == "build" ]]; then
         clang \
         -Iinclude \
         $(find src -name "*.c") \
-        -o out/debug/main
+        -o out/debug/c-codingbat
 
         # test target
         clang \
@@ -28,7 +28,7 @@ elif [[ "$1" == "build" ]]; then
         src/core.c \
         $(find tests -name "*.c") \
         extras/unity/src/unity.c \
-        -o out/debug/test_main
+        -o out/debug/c-codingbat-tests
     elif [[ "$2" == "--release" || "$2" == "-r" ]]; then
         mkdir -p out/release
 
@@ -37,7 +37,7 @@ elif [[ "$1" == "build" ]]; then
         -O3 -march=native \
         -Iinclude \
         $(find src -name "*.c") \
-        -o out/release/main
+        -o out/release/c-codingbat
 
         # test target
         clang \
@@ -47,7 +47,7 @@ elif [[ "$1" == "build" ]]; then
         src/core.c \
         $(find tests -name "*.c") \
         extras/unity/src/unity.c \
-        -o out/release/test_main
+        -o out/release/c-codingbat-tests
     elif [[ "$2" == "--all" || "$2" == "-a" ]]; then
         # Build for debug
         ./build build -d
@@ -61,9 +61,9 @@ elif [[ "$1" == "build" ]]; then
 # unittest
 elif [[ "$1" == "test" ]]; then
     if [[ -z "$2" || "$2" == "--debug" || "$2" == "-d" ]]; then
-        ./out/debug/test_main 2>/dev/null || echo "Debug test target not found. Run 'mac build' first"
+        ./out/debug/c-codingbat-tests 2>/dev/null || echo "Debug test target not found. Run 'mac build' first"
     elif [[ "$2" == "--release" || "$2" == "-r" ]]; then
-        ./out/release/test_main 2>/dev/null || echo "Release test target not found. Run 'mac build --release' first"
+        ./out/release/c-codingbat-tests 2>/dev/null || echo "Release test target not found. Run 'mac build --release' first"
     else
         echo "No test target found!!"
         exit 1;
