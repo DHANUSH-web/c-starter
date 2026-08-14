@@ -11,7 +11,7 @@ if [[ "$1" == "run" ]]; then
         exit 1
     fi
 # build the executable
-elif [[ "$1" == "build" ]]; then
+elif [[ "$1" == "build-raw" ]]; then
     if [[ -z "$2" || "$2" == "--debug" || "$2" == "-d" ]]; then
         mkdir -p out/debug
 
@@ -54,6 +54,23 @@ elif [[ "$1" == "build" ]]; then
 
         # Build for release
         ./build build -r
+    else
+        echo "Invalid option. Use --debug or --release or --all."
+        exit 1
+    fi
+elif [[ "$1" == "build" ]]; then
+    if [[ -z "$2" || "$2" == "--debug" || "$2" == "-d" ]]; then
+        cmake --preset debug
+        cmake --build out/debug
+    elif [[ "$2" == "--release" || "$2" == "-r" ]]; then
+        cmake --preset release
+        cmake --build out/release
+    elif [[ "$2" == "--all" || "$2" == "-a" ]]; then
+        # Build for debug
+        ./build build-raw -d
+
+        # Build for release
+        ./build build-raw -r
     else
         echo "Invalid option. Use --debug or --release or --all."
         exit 1
