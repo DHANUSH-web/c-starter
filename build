@@ -1,5 +1,24 @@
 #!/bin/bash
 
+if [[ "$1" == *::* ]]; then
+    echo "Batch commands..."
+
+    IFS=' ' read -ra args <<< "${1//::/ }"
+
+    for arg in "${args[@]}"; do
+        case "$arg" in
+            build)     ./build build "$2" ;;
+            build-raw) ./build build-raw "$2" ;;
+            run)       ./build run "$2" ;;
+            test)      ./build test "$2" ;;
+            clean)     ./build clean "$2" ;;
+            *)         echo "${arg} is an invalid command" ;;
+        esac
+    done
+
+    exit 0
+fi
+
 # build and run the executable
 if [[ "$1" == "run" ]]; then
     if [[ -z "$2" || "$2" == "--debug" || "$2" == "-d" ]]; then
