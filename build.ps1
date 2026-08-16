@@ -19,7 +19,7 @@ function Build-Debug {
     gcc.exe `
         -Iinclude `
         src/core.c src/main.c `
-        -o out/debug/main.exe
+        -o out/debug/c-codingbat.exe
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
     # test target
@@ -29,7 +29,7 @@ function Build-Debug {
         src/core.c `
         tests/test_core.c `
         extras/unity/src/unity.c `
-        -o out/debug/test_main.exe
+        -o out/debug/c-codingbat-tests.exe
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 }
 
@@ -42,7 +42,7 @@ function Build-Release {
         -O3 -march=native `
         -Iinclude `
         src/core.c src/main.c `
-        -o out/release/main.exe
+        -o out/release/c-codingbat.exe
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
     # test target
@@ -53,7 +53,7 @@ function Build-Release {
         src/core.c `
         tests/test_core.c `
         extras/unity/src/unity.c `
-        -o out/release/test_main.exe
+        -o out/release/c-codingbat-tests.exe
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 }
 
@@ -73,19 +73,19 @@ function Invoke-Exe {
 }
 
 function Run-Debug {
-    Invoke-Exe "out/debug/main.exe" "Debug target not found. Run '.\build.ps1 build' first"
+    Invoke-Exe "out/debug/c-codingbat.exe" "Debug target not found. Run '.\build.ps1 build' first"
 }
 
 function Run-Release {
-    Invoke-Exe "out/release/main.exe" "Release target not found. Run '.\build.ps1 build --release' first"
+    Invoke-Exe "out/release/c-codingbat.exe" "Release target not found. Run '.\build.ps1 build --release' first"
 }
 
 function Test-Debug {
-    Invoke-Exe "out/debug/test_main.exe" "Debug test target not found. Run '.\build.ps1 build' first"
+    Invoke-Exe "out/debug/c-codingbat-tests.exe" "Debug test target not found. Run '.\build.ps1 build' first"
 }
 
 function Test-Release {
-    Invoke-Exe "out/release/test_main.exe" "Release test target not found. Run '.\build.ps1 build --release' first"
+    Invoke-Exe "out/release/c-codingbat-tests.exe" "Release test target not found. Run '.\build.ps1 build --release' first"
 }
 
 function Clean-Build {
