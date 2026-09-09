@@ -6,7 +6,6 @@
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/out/debug",
       "cacheVariables": {
-        "CMAKE_C_COMPILER": "gcc.exe",
         "CMAKE_BUILD_TYPE": "Debug"
       }
     },
@@ -15,7 +14,6 @@
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/out/release",
       "cacheVariables": {
-        "CMAKE_C_COMPILER": "gcc.exe",
         "CMAKE_BUILD_TYPE": "Release"
       }
     }

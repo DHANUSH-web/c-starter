@@ -10,27 +10,27 @@ build-all: build build-release
 
 build-raw:
 	@mkdir -p out/debug
-	@gcc.exe -std=c17 -Iinclude  src/core.c src/main.c -o out/debug/c-codingbat.exe
-	@gcc.exe -std=c17 -Iinclude -Iextras/unity/src tests/test_core.c src/core.c extras/unity/src/unity.c -o out/debug/c-codingbat-tests.exe
+	@gcc -std=c17 -Iinclude  src/core.c src/main.c -o out/debug/c-codingbat
+	@gcc -std=c17 -Iinclude -Iextras/unity/src tests/test_core.c src/core.c extras/unity/src/unity.c -o out/debug/c-codingbat-tests
 
 build-raw-release:
 	@mkdir -p out/release
-	@gcc.exe -std=c17 -O3 -march=native -Iinclude src/core.c src/main.c -o out/release/c-codingbat.exe
-	@gcc.exe -std=c17 -O3 -march=native -Iinclude -Iextras/unity/src tests/test_core.c src/core.c extras/unity/src/unity.c  -o out/release/c-codingbat-tests.exe
+	@gcc -std=c17 -O3 -march=native -Iinclude src/core.c src/main.c -o out/release/c-codingbat
+	@gcc -std=c17 -O3 -march=native -Iinclude -Iextras/unity/src tests/test_core.c src/core.c extras/unity/src/unity.c  -o out/release/c-codingbat-tests
 
 build-raw-all: build-raw build-raw-release
 
 run:
-	@out/debug/c-codingbat.exe
+	@out/debug/c-codingbat
 
 run-release:
-	@out/release/c-codingbat.exe
+	@out/release/c-codingbat
 
 test:
-	@out/debug/c-codingbat-tests.exe
+	@out/debug/c-codingbat-tests
 
 test-release:
-	@out/release/c-codingbat-tests.exe
+	@out/release/c-codingbat-tests
 
 clean:
 	@rm -rf out/debug
