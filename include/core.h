@@ -52,5 +52,6 @@ BOOL mod_three(const int *nums, const int size);
 BOOL have_three(const int *nums, const int size);
 BOOL two_two(const int *nums, const int size);
 BOOL same_ends(const int* nums, const int len, const int size);
+BOOL triple_up(const int* nums, const int size);
 
 #endif // C_CODINGBAT_INCLUDE_CORE_H

@@ -478,3 +478,11 @@ BOOL same_ends(const int* nums, const int len, const int size)
             return FALSE;
     return TRUE;
 }
+
+BOOL triple_up(const int* nums, const int size)
+{
+    for (int i = 0; i < size - 2; i++)
+        if (nums[i+1] - nums[i] == 1 && nums[i+2] - nums[i+1] == 1)
+            return TRUE;
+    return FALSE;
+}
